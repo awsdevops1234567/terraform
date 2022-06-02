@@ -31,7 +31,13 @@ resource "aws_subnet" "dev_prv_sub_1" {
 resource "aws_route_table" "dev_public_rt" {
   vpc_id = aws_vpc.dev_vpc.id
 
-  route = []
+  
+ route {
+    cidr_block = "10.10.6.0/24"
+    gateway_id = aws_internet_gateway.dev_IGW.id
+  }
+  
+  
 
   tags = {
     Name = "dev_pub_rt"
